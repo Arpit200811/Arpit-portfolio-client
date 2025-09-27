@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Button } from "@material-ui/core";
-import { NavHashLink as NavLink } from "react-router-hash-link";
+import { Link as ScrollLink } from "react-scroll";
 import { makeStyles } from "@material-ui/core/styles";
 
 import "./Landing.module.css";
@@ -70,13 +70,18 @@ function Landing() {
   return (
     <div className="landing">
       <div className="landing--container">
+        {/* Left Social Icons */}
         <div
           className="landing--container-left"
           style={{ backgroundColor: theme.primary }}
         >
           <div className="lcl--content">
             {socialsData.linkedIn && (
-              <a href={socialsData.linkedIn} target="_blank" rel="noreferrer">
+              <a
+                href={socialsData.linkedIn}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <FaLinkedin
                   className="landing--social"
                   style={{ color: theme.secondary }}
@@ -122,6 +127,8 @@ function Landing() {
             )}
           </div>
         </div>
+
+        {/* Center Image */}
         <img
           src={headerData.image}
           alt=""
@@ -131,6 +138,8 @@ function Landing() {
             borderColor: theme.secondary,
           }}
         />
+
+        {/* Right Content */}
         <div
           className="landing--container-right"
           style={{ backgroundColor: theme.secondary }}
@@ -141,18 +150,27 @@ function Landing() {
             <p>{headerData.desciption}</p>
 
             <div className="lcr-buttonContainer">
+              {/* Resume Button */}
               {headerData.resumePdf && (
                 <a
                   href={headerData.resumePdf}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className={classes.resumeBtn}
                 >
                   Download CV
                 </a>
               )}
-              <NavLink to="/#contacts" smooth={true} spy="true" duration={2000}>
+
+              {/* Contact Button */}
+              <ScrollLink
+                to="contacts"
+                smooth={true}
+                duration={800}
+                offset={-70}
+              >
                 <Button className={classes.contactBtn}>Contact</Button>
-              </NavLink>
+              </ScrollLink>
             </div>
           </div>
         </div>
