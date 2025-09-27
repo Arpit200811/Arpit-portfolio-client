@@ -6,11 +6,11 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 import { AiOutlineFolder } from "react-icons/ai";
 
-import './Achievement.css'
+import './Achievement.module.css'
 
 function AchievementCard({id, title, details, date, field, image}) {
 
-    const { theme } = useContext(ThemeContext);
+   const { theme } = useContext(ThemeContext) || {}
 
     const useStyles = makeStyles((t) => ({
         achievementCard : {

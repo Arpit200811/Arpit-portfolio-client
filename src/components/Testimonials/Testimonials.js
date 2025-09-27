@@ -7,10 +7,10 @@ import { FaQuoteLeft, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { testimonialsData } from '../../data/testimonialsData';
 
-import './Testimonials.css';
+import './Testimonials.module.css';
 
 function Testimonials() {
-    const { theme } = useContext(ThemeContext);
+   const { theme } = useContext(ThemeContext) || {}
     const sliderRef = useRef();
 
     const settings = {

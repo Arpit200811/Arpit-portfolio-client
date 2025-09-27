@@ -4,12 +4,12 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 import { servicesData } from '../../data/servicesData';
 
-import './Services.css'
+import './Services.module.css'
 import SingleService from './SingleService/SingleService';
 
 function Services() {
 
-    const { theme } = useContext(ThemeContext);
+   const { theme } = useContext(ThemeContext) || {}
     return (
         <>
             {servicesData.length > 0 && (

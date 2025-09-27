@@ -3,12 +3,12 @@ import { IoIosArrowDropupCircle } from 'react-icons/io';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
-import './BackToTop.css';
+import './BackToTop.module.css';
 
 function BackToTop() {
     const [visible, setVisible] = useState(false);
 
-    const { theme } = useContext(ThemeContext);
+   const { theme } = useContext(ThemeContext) || {};
 
     const toggleVisible = () => {
         const scrolled = document.documentElement.scrollTop;

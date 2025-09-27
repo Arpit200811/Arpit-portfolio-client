@@ -7,11 +7,11 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 import expImgWhite from '../../assets/svg/experience/expImgWhite.svg'
 import expImgBlack from '../../assets/svg/experience/expImgBlack.svg'
 
-import './Experience.css'
+import './Experience.module.css'
 
 function ExperienceCard({id, company, jobtitle, startYear, endYear}) {
 
-    const { theme } = useContext(ThemeContext);
+   const { theme } = useContext(ThemeContext) || {};
 
     const useStyles = makeStyles((t) => ({
         experienceCard : {

@@ -6,11 +6,11 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 import eduImgWhite from '../../assets/svg/education/eduImgWhite.svg'
 import eduImgBlack from '../../assets/svg/education/eduImgBlack.svg'
-import './Education.css'
+import './Education.module.css'
 
 function EducationCard({ id, institution, course, startYear, endYear }) {
 
-    const { theme } = useContext(ThemeContext);
+   const { theme } = useContext(ThemeContext) || {};
 
     const useStyles = makeStyles((t) => ({
         educationCard : {

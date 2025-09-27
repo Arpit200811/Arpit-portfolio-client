@@ -1,20 +1,18 @@
 import React, { useContext, useState } from 'react'
-import { Helmet } from 'react-helmet'
+import Head from 'next/head'
+import Link from 'next/link'
 import { Grid } from '@material-ui/core'
-import { Link } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core/styles';
-import { AiOutlineHome } from "react-icons/ai";
+import { makeStyles } from '@material-ui/core/styles'
+import { AiOutlineHome } from "react-icons/ai"
 
-import './ProjectPage.css'
-import { SingleProject } from '../../components';
-import { ThemeContext } from '../../contexts/ThemeContext';
+import { SingleProject } from '../../components'
+import { ThemeContext } from '../../contexts/ThemeContext'
 import { projectsData } from '../../data/projectsData'
 import { headerData } from '../../data/headerData'
 
-function ProjectPage() {
-
+const ProjectPage = () => {
     const [search, setSearch] = useState('')
-    const { theme } = useContext(ThemeContext);
+   const { theme } = useContext(ThemeContext) || {}
 
     const filteredArticles = projectsData.filter((project) => {
         const content = project.projectName + project.projectDesc + project.tags
@@ -63,27 +61,35 @@ function ProjectPage() {
                 fontSize: '1.8rem',
             },
         },
-    }));
+    }))
 
-    const classes = useStyles();
+    const classes = useStyles()
 
     return (
         <div className="projectPage" style={{backgroundColor: theme.secondary}}>
-            <Helmet>
+            <Head>
                 <title>{headerData.name} | Projects</title>
-            </Helmet>
-            <div className="projectPage-header" style={{backgroundColor:theme.primary}}>
-                <Link to="/">
-                        <AiOutlineHome className={classes.home}/>
+            </Head>
+
+            <div className="projectPage-header" style={{backgroundColor: theme.primary}}>
+                <Link href="/" passHref>
+                    <AiOutlineHome className={classes.home}/>
                 </Link>
                 <h1 style={{color: theme.secondary}}>Projects</h1>
             </div>
-           <div className="projectPage-container">
-               <div className="projectPage-search">
-                   <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search project..." className={classes.search} />
-               </div>
-               <div className="project-container">
-                   <Grid className="project-grid" container direction="row" alignItems="center" justifyContent="center">
+
+            <div className="projectPage-container">
+                <div className="projectPage-search">
+                    <input 
+                        type="text" 
+                        value={search} 
+                        onChange={(e) => setSearch(e.target.value)} 
+                        placeholder="Search project..." 
+                        className={classes.search} 
+                    />
+                </div>
+                <div className="project-container">
+                    <Grid className="project-grid" container direction="row" alignItems="center" justifyContent="center">
                         {filteredArticles.map(project => (
                             <SingleProject
                                 theme={theme}
@@ -97,9 +103,9 @@ function ProjectPage() {
                                 image={project.image} 
                             />
                         ))}
-                   </Grid>
-               </div>
-           </div>    
+                    </Grid>
+                </div>
+            </div>    
         </div>
     )
 }

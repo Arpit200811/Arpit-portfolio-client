@@ -3,7 +3,7 @@ import Fade from 'react-reveal/Fade';
 
 import { ThemeContext } from '../../../contexts/ThemeContext';
 
-import './SingleService.css'
+import './SingleService.module.css'
 
 
 function SingleService({id, title, icon}) {

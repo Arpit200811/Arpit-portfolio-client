@@ -2,14 +2,14 @@ import React,{useContext} from 'react';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-import './Experience.css';
+import './Experience.module.css';
 
 import { experienceData } from '../../data/experienceData'
 import ExperienceCard from './ExperienceCard';
 
 function Experience() {
 
-    const { theme } = useContext(ThemeContext);
+   const { theme } = useContext(ThemeContext) || {}
     return (
         <div className="experience" id="experience" style={{backgroundColor: theme.secondary}}> 
              <div className="experience-body">

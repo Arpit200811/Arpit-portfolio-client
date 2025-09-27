@@ -1,42 +1,38 @@
-import React,{ useContext} from 'react';
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react';
+import dynamic from 'next/dynamic';
 import { makeStyles } from '@material-ui/core/styles';
+import { HiArrowRight } from "react-icons/hi";
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { projectsData } from '../../data/projectsData'
-import { HiArrowRight } from "react-icons/hi";
 
-import './Projects.css'
-import SingleProject from './SingleProject/SingleProject';
+// SingleProject ko dynamic import kiya (SSR safe)
+const SingleProject = dynamic(() => import('./SingleProject/SingleProject'), { ssr: false });
 
 function Projects() {
+    const { theme } = useContext(ThemeContext) || {}
 
-    const { theme } = useContext(ThemeContext);
-
-    
     const useStyles = makeStyles(() => ({
         viewAllBtn : {
-            color: theme.tertiary, 
-            backgroundColor: theme.primary,
-            transition: 'color 0.2s',
+            color: theme?.tertiary || 'black', 
+            backgroundColor: theme?.primary || 'white',
             "&:hover": {
-                color: theme.secondary, 
-                backgroundColor: theme.primary,
+                color: theme?.secondary || 'gray', 
+                backgroundColor: theme?.primary || 'white',
             }
         },
         viewArr : {
-            color: theme.tertiary, 
-            backgroundColor: theme.secondary70,
+            color: theme?.tertiary || 'black', 
+            backgroundColor: theme?.secondary70 || '#ddd',
             width: '40px',
             height: '40px',
             padding: '0.5rem',
             fontSize: '1.05rem',
             borderRadius: '50%',
             cursor: 'pointer',
-            transition: 'background-color 0.2s',
             "&:hover": {
-                color: theme.tertiary, 
-                backgroundColor: theme.secondary,
+                color: theme?.tertiary || 'black', 
+                backgroundColor: theme?.secondary || 'gray',
             }
         },
     }));
@@ -46,9 +42,9 @@ function Projects() {
     return (
         <>
             {projectsData.length > 0 && (
-                <div className="projects" id="projects" style={{backgroundColor: theme.secondary}}>
+                <div className="projects" id="projects" style={{backgroundColor: theme?.secondary || 'white'}}>
                     <div className="projects--header">
-                        <h1 style={{color: theme.primary}}>Projects</h1>
+                        <h1 style={{color: theme?.primary || 'black'}}>Projects</h1>
                     </div>
                     <div className="projects--body">
                         <div className="projects--bodyContainer">
@@ -66,23 +62,21 @@ function Projects() {
                                 />
                             ))}
                         </div> 
-
                         {projectsData.length > 3 && (
                             <div className="projects--viewAll">
-                                <Link to="/projects">
+                                <a href="/projects">
                                     <button className={classes.viewAllBtn}>
                                         View All
                                         <HiArrowRight className={classes.viewArr} />
                                     </button>
-                                </Link>
+                                </a>
                             </div>
                         )}
                     </div>
                 </div>
             )}
-
         </>
     )
 }
 
-export default Projects
+export default Projects;

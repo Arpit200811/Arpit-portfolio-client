@@ -1,30 +1,29 @@
-import React,{ useContext} from 'react';
-import { Link } from 'react-router-dom'
+import React, { useContext } from 'react';
+import dynamic from 'next/dynamic';
 import { makeStyles } from '@material-ui/core/styles';
 import { HiArrowRight } from "react-icons/hi";
 
-import './Blog.css';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { blogData } from '../../data/blogData'
-import SingleBlog from './SingleBlog/SingleBlog';
 
+// SingleBlog ko dynamic import kiya (SSR safe)
+const SingleBlog = dynamic(() => import('./SingleBlog/SingleBlog'), { ssr: false });
 
 function Blog() {
-
-    const { theme } = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext) || {}
 
     const useStyles = makeStyles(() => ({
         viewAllBtn : {
-            color: theme.tertiary, 
-            backgroundColor: theme.primary,
+            color: theme?.tertiary || 'black', 
+            backgroundColor: theme?.primary || 'white',
             "&:hover": {
-                color: theme.secondary, 
-                backgroundColor: theme.primary,
+                color: theme?.secondary || 'gray', 
+                backgroundColor: theme?.primary || 'white',
             }
         },
         viewArr : {
-            color: theme.tertiary, 
-            backgroundColor: theme.secondary70,
+            color: theme?.tertiary || 'black', 
+            backgroundColor: theme?.secondary70 || '#ddd',
             width: '40px',
             height: '40px',
             padding: '0.5rem',
@@ -32,8 +31,8 @@ function Blog() {
             borderRadius: '50%',
             cursor: 'pointer',
             "&:hover": {
-                color: theme.tertiary, 
-                backgroundColor: theme.secondary,
+                color: theme?.tertiary || 'black', 
+                backgroundColor: theme?.secondary || 'gray',
             }
         },
     }));
@@ -43,9 +42,9 @@ function Blog() {
     return (
         <>
             {blogData.length > 0 && (
-                <div className="blog" id="blog" style={{backgroundColor: theme.secondary}}>
+                <div className="blog" id="blog" style={{backgroundColor: theme?.secondary || 'white'}}>
                     <div className="blog--header">
-                        <h1 style={{color: theme.primary}}>Blog</h1>
+                        <h1 style={{color: theme?.primary || 'black'}}>Blog</h1>
                     </div>
                     <div className="blog--body">
                         <div className="blog--bodyContainer">
@@ -62,23 +61,21 @@ function Blog() {
                                 />
                             ))}
                         </div> 
-
                         {blogData.length > 3 && (
                             <div className="blog--viewAll">
-                                <Link to="/blog">
+                                <a href="/blog">
                                     <button className={classes.viewAllBtn}>
                                         View All
                                         <HiArrowRight className={classes.viewArr} />
                                     </button>
-                                </Link>
+                                </a>
                             </div>
                         )}
                     </div>
                 </div>
             )}
-
         </>
     )
 }
 
-export default Blog
+export default Blog;

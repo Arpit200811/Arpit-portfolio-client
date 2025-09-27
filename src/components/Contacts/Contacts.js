@@ -25,7 +25,7 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 import { socialsData } from '../../data/socialsData';
 import { contactsData } from '../../data/contactsData';
-import './Contacts.css';
+import './Contacts.module.css';
 
 function Contacts() {
     const [open, setOpen] = useState(false);
@@ -37,7 +37,7 @@ function Contacts() {
     const [success, setSuccess] = useState(false);
     const [errMsg, setErrMsg] = useState('');
 
-    const { theme } = useContext(ThemeContext);
+    const { theme } = useContext(ThemeContext) || {}
 
     const handleClose = (event, reason) => {
         if (reason === 'clickaway') {

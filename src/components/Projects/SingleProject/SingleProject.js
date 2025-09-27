@@ -4,7 +4,7 @@ import { FaPlay, FaCode } from 'react-icons/fa';
 import Fade from 'react-reveal/Fade';
 
 import placeholder from '../../../assets/png/placeholder.png';
-import './SingleProject.css';
+import './SingleProject.module.css';
 
 function SingleProject({ id, name, desc, tags, code, demo, image, theme }) {
     const useStyles = makeStyles((t) => ({
