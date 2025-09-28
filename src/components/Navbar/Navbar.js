@@ -291,7 +291,8 @@
 // export default Navbar;
 
 
-// src/components/Navbar/Navbar.js
+/// src/components/Navbar/Navbar.js
+
 import React, { useContext, useState } from 'react';
 import { Link as ScrollLink } from 'react-scroll';
 import Fade from 'react-reveal/Fade';
@@ -304,7 +305,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CloseIcon from '@material-ui/icons/Close';
 
-import './Navbar.module.css';
+import styles from './Navbar.module.css'; // 👈 बदला हुआ: CSS मॉड्यूल को 'styles' में इम्पोर्ट किया
 import { headerData } from '../../data/headerData';
 import { ThemeContext } from '../../contexts/ThemeContext';
 
@@ -323,6 +324,7 @@ function Navbar() {
     };
 
     const useStyles = makeStyles((t) => ({
+        // ... आपका useStyles का कोड जैसा था वैसा ही रहेगा ...
         navMenu: {
             fontSize: '2.5rem',
             color: theme.tertiary,
@@ -392,8 +394,8 @@ function Navbar() {
     const shortname = (name) => (name.length > 12 ? name.split(' ')[0] : name);
 
     return (
-        <div className='navbar'>
-            <div className='navbar--container'>
+        <div className={styles.navbar}> {/* 👈 बदला हुआ */}
+            <div className={styles['navbar--container']}> {/* 👈 बदला हुआ */}
                 <h1 style={{ color: theme.secondary }}>{shortname(headerData.name)}</h1>
                 <IoMenuSharp
                     className={classes.navMenu}
@@ -408,9 +410,10 @@ function Navbar() {
                 anchor='left'
                 open={open}
                 classes={{ paper: classes.MuiDrawer }}
+                className={styles.drawer} // 👈 बदला हुआ
                 disableScrollLock={true}
             >
-                <div className='div-closebtn'>
+                <div className={styles['div-closebtn']}> {/* 👈 बदला हुआ */}
                     <CloseIcon
                         onClick={handleDrawerClose}
                         onKeyDown={(e) => {
@@ -427,84 +430,49 @@ function Navbar() {
                 </div>
 
                 <div onClick={handleDrawerClose}>
-                    <div className='navLink--container'>
+                    <div className={styles['navLink--container']}> {/* 👈 बदला हुआ */}
                         <Fade left>
-                            <ScrollLink
-                                to='home'
-                                smooth={true}
-                                duration={800}
-                                offset={-70}
-                            >
+                            <ScrollLink to='home' smooth={true} duration={800} offset={-70}>
                                 <div className={classes.drawerItem}>
                                     <IoHomeSharp className={classes.drawerIcon} />
                                     <span className={classes.drawerLinks}>Home</span>
                                 </div>
                             </ScrollLink>
                         </Fade>
-
                         <Fade left>
-                            <ScrollLink
-                                to='about'
-                                smooth={true}
-                                duration={800}
-                                offset={-70}
-                            >
+                            <ScrollLink to='about' smooth={true} duration={800} offset={-70}>
                                 <div className={classes.drawerItem}>
                                     <FaUser className={classes.drawerIcon} />
                                     <span className={classes.drawerLinks}>About</span>
                                 </div>
                             </ScrollLink>
                         </Fade>
-
                         <Fade left>
-                            <ScrollLink
-                                to='resume'
-                                smooth={true}
-                                duration={800}
-                                offset={-70}
-                            >
+                            <ScrollLink to='resume' smooth={true} duration={800} offset={-70}>
                                 <div className={classes.drawerItem}>
                                     <HiDocumentText className={classes.drawerIcon} />
                                     <span className={classes.drawerLinks}>Resume</span>
                                 </div>
                             </ScrollLink>
                         </Fade>
-
                         <Fade left>
-                            <ScrollLink
-                                to='services'
-                                smooth={true}
-                                duration={800}
-                                offset={-70}
-                            >
+                            <ScrollLink to='services' smooth={true} duration={800} offset={-70}>
                                 <div className={classes.drawerItem}>
                                     <BsFillGearFill className={classes.drawerIcon} />
                                     <span className={classes.drawerLinks}>Services</span>
                                 </div>
                             </ScrollLink>
                         </Fade>
-
                         <Fade left>
-                            <ScrollLink
-                                to='blog'
-                                smooth={true}
-                                duration={800}
-                                offset={-70}
-                            >
+                            <ScrollLink to='blog' smooth={true} duration={800} offset={-70}>
                                 <div className={classes.drawerItem}>
                                     <FaFolderOpen className={classes.drawerIcon} />
                                     <span className={classes.drawerLinks}>Blog</span>
                                 </div>
                             </ScrollLink>
                         </Fade>
-
                         <Fade left>
-                            <ScrollLink
-                                to='contacts'
-                                smooth={true}
-                                duration={800}
-                                offset={-70}
-                            >
+                            <ScrollLink to='contacts' smooth={true} duration={800} offset={-70}>
                                 <div className={classes.drawerItem}>
                                     <MdPhone className={classes.drawerIcon} />
                                     <span className={classes.drawerLinks}>Contact</span>

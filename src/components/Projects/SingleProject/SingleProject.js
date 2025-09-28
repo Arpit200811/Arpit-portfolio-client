@@ -4,7 +4,7 @@ import { FaPlay, FaCode } from 'react-icons/fa';
 import Fade from 'react-reveal/Fade';
 
 import placeholder from '../../../assets/png/placeholder.png';
-import './SingleProject.module.css';
+import styles from './SingleProject.module.css'; // 👈 बदला हुआ
 
 function SingleProject({ id, name, desc, tags, code, demo, image, theme }) {
     const useStyles = makeStyles((t) => ({
@@ -38,10 +38,10 @@ function SingleProject({ id, name, desc, tags, code, demo, image, theme }) {
         <Fade bottom>
             <div
                 key={id}
-                className='singleProject'
+                className={styles.singleProject} // 👈 बदला हुआ
                 style={{ backgroundColor: theme.primary400 }}
             >
-                <div className='projectContent'>
+                <div className={styles.projectContent}> {/* 👈 बदला हुआ */}
                     <h2
                         id={name.replace(' ', '-').toLowerCase()}
                         style={{ color: theme.tertiary }}
@@ -49,7 +49,7 @@ function SingleProject({ id, name, desc, tags, code, demo, image, theme }) {
                         {name}
                     </h2>
                     <img src={image ? image : placeholder} alt={name} />
-                    <div className='project--showcaseBtn'>
+                    <div className={styles['project--showcaseBtn']}> {/* 👈 बदला हुआ */}
                         <a
                             href={demo}
                             target='_blank'
@@ -91,7 +91,7 @@ function SingleProject({ id, name, desc, tags, code, demo, image, theme }) {
                     </div>
                 </div>
                 <p
-                    className='project--desc'
+                    className={styles['project--desc']} // 👈 बदला हुआ
                     style={{
                         background: theme.secondary,
                         color: theme.tertiary,
@@ -100,7 +100,7 @@ function SingleProject({ id, name, desc, tags, code, demo, image, theme }) {
                     {desc}
                 </p>
                 <div
-                    className='project--lang'
+                    className={styles['project--lang']} // 👈 बदला हुआ
                     style={{
                         background: theme.secondary,
                         color: theme.tertiary80,

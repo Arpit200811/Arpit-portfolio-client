@@ -3,20 +3,19 @@ import { makeStyles } from '@material-ui/core/styles';
 import Fade from 'react-reveal/Fade';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
-
 import { AiOutlineFolder } from "react-icons/ai";
 
-import './Achievement.module.css'
+import styles from './Achievement.module.css'; // 👈 बदला हुआ
 
-function AchievementCard({id, title, details, date, field, image}) {
+function AchievementCard({ id, title, details, date, field, image }) {
 
-   const { theme } = useContext(ThemeContext) || {}
+    const { theme } = useContext(ThemeContext) || {};
 
     const useStyles = makeStyles((t) => ({
-        achievementCard : {
-            backgroundColor:theme.primary30,
+        achievementCard: {
+            backgroundColor: theme.primary30,
             "&:hover": {
-                backgroundColor:theme.primary50,
+                backgroundColor: theme.primary50,
             },
         },
     }));
@@ -24,27 +23,26 @@ function AchievementCard({id, title, details, date, field, image}) {
     const classes = useStyles();
     return (
         <Fade bottom>
-           <div key={id} className={`achievement-card ${classes.achievementCard}`}>
-               <div className="achievecard-content">
-                    <div className="achievecard-details1">
-                        <h2 style={{color: theme.tertiary}}>{title}</h2>
-                        <p style={{color: theme.tertiary80}}>{details}</p>
+            <div key={id} className={`${styles['achievement-card']} ${classes.achievementCard}`}> {/* 👈 बदला हुआ */}
+                <div className={styles['achievecard-content']}> {/* 👈 बदला हुआ */}
+                    <div className={styles['achievecard-details1']}> {/* 👈 बदला हुआ */}
+                        <h2 style={{ color: theme.tertiary }}>{title}</h2>
+                        <p style={{ color: theme.tertiary80 }}>{details}</p>
                     </div>
-                    <div className="achievecard-details2" style={{color: theme.primary}}>
+                    <div className={styles['achievecard-details2']} style={{ color: theme.primary }}> {/* 👈 बदला हुआ */}
                         <h5>{date}</h5>
-                        <div className="achievecard-field">
+                        <div className={styles['achievecard-field']}> {/* 👈 बदला हुआ */}
                             <AiOutlineFolder />
                             <h5>{field}</h5>
-                        </div>   
+                        </div>
                     </div>
-                </div> 
-                <div className="achievecard-imgcontainer">
+                </div>
+                <div className={styles['achievecard-imgcontainer']}> {/* 👈 बदला हुआ */}
                     <img src={image} alt="" />
                 </div>
-           </div>
+            </div>
         </Fade>
-        
     )
 }
 
-export default AchievementCard
+export default AchievementCard;

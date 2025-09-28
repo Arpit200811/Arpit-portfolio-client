@@ -4,24 +4,24 @@ import { ThemeContext } from '../../contexts/ThemeContext';
 
 import { servicesData } from '../../data/servicesData';
 
-import './Services.module.css'
+import styles from './Services.module.css';
 import SingleService from './SingleService/SingleService';
 
 function Services() {
 
-   const { theme } = useContext(ThemeContext) || {}
+    const { theme } = useContext(ThemeContext) || {};
     return (
         <>
             {servicesData.length > 0 && (
-                <div className="services" id="services" style={{backgroundColor:theme.secondary}}>
-                    <div className="services-header">
+                <div className={styles.services} id="services" style={{backgroundColor:theme.secondary}}>
+                    <div className={styles['services-header']}> {/* 👈 बदला हुआ */}
                         <h1 style={{color: theme.primary}}>Services</h1>
                     </div>
-                    <div className="services-body">
+                    <div className={styles['services-body']}> {/* 👈 बदला हुआ */}
                         <p style={{color:theme.tertiary80}}>
                             These are some of the services I offer. Reach out to me if I can help you with any!
                         </p>
-                        <div className="services-bodycontainer">
+                        <div className={styles['services-bodycontainer']}> {/* 👈 बदला हुआ */}
                             {servicesData.map(services => (
                                 <SingleService
                                 key={services.id}
@@ -37,4 +37,4 @@ function Services() {
     )
 }
 
-export default Services
+export default Services;

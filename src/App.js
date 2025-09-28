@@ -15,7 +15,6 @@ function App() {
 
   console.log("%cDEVELOPER PORTFOLIO", `color:${theme.primary}; font-size:50px`);
   console.log("%chttps://github.com/Arpit200811", `color:${theme.tertiary}; font-size:20px`);
-  // console.log = console.warn = console.error = () => {};
 
   return (
     <div className="app">

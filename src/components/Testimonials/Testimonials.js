@@ -1,16 +1,12 @@
 import React, { useContext, useRef } from 'react';
-
 import Slider from 'react-slick';
-
 import { FaQuoteLeft, FaArrowRight, FaArrowLeft } from 'react-icons/fa';
-
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { testimonialsData } from '../../data/testimonialsData';
-
-import './Testimonials.module.css';
+import styles from './Testimonials.module.css'; // 👈 बदला हुआ
 
 function Testimonials() {
-   const { theme } = useContext(ThemeContext) || {}
+    const { theme } = useContext(ThemeContext) || {};
     const sliderRef = useRef();
 
     const settings = {
@@ -42,33 +38,32 @@ function Testimonials() {
         <>
             {testimonialsData.length > 0 && (
                 <div
-                    className='testimonials'
+                    className={styles.testimonials} // 👈 बदला हुआ
                     style={{ backgroundColor: theme.primary }}
                 >
-                    <div className='testimonials--header'>
+                    <div className={styles['testimonials--header']}> {/* 👈 बदला हुआ */}
                         <h1 style={{ color: theme.secondary }}>Testimonials</h1>
                     </div>
-                    <div className='testimonials--body'>
+                    <div className={styles['testimonials--body']}> {/* 👈 बदला हुआ */}
                         <FaQuoteLeft
-                            className='quote'
+                            className={styles.quote} // 👈 बदला हुआ
                             style={{ color: theme.secondary }}
                         />
                         <div
-                            className='testimonials--slider'
+                            className={styles['testimonials--slider']} // 👈 बदला हुआ
                             style={{ backgroundColor: theme.primary }}
                         >
                             <Slider {...settings} ref={sliderRef}>
                                 {testimonialsData.map((test) => (
                                     <div
-                                        className='single--testimony'
+                                        className={styles['single--testimony']} // 👈 बदला हुआ
                                         key={test.id}
                                     >
-                                        <div className='testimonials--container'>
+                                        <div className={styles['testimonials--container']}> {/* 👈 बदला हुआ */}
                                             <div
-                                                className='review--img'
+                                                className={styles['review--img']} // 👈 बदला हुआ
                                                 style={{
-                                                    backgroundColor:
-                                                        theme.secondary,
+                                                    backgroundColor: theme.secondary,
                                                 }}
                                             >
                                                 <img
@@ -77,10 +72,9 @@ function Testimonials() {
                                                 />
                                             </div>
                                             <div
-                                                className='review--content'
+                                                className={styles['review--content']} // 👈 बदला हुआ
                                                 style={{
-                                                    backgroundColor:
-                                                        theme.secondary,
+                                                    backgroundColor: theme.secondary,
                                                     color: theme.tertiary,
                                                 }}
                                             >
@@ -93,7 +87,7 @@ function Testimonials() {
                                 ))}
                             </Slider>
                             <button
-                                className='prevBtn'
+                                className={styles.prevBtn} // 👈 बदला हुआ
                                 onClick={gotoPrev}
                                 style={{ backgroundColor: theme.secondary }}
                             >
@@ -103,7 +97,7 @@ function Testimonials() {
                                 />
                             </button>
                             <button
-                                className='nextBtn'
+                                className={styles.nextBtn} // 👈 बदला हुआ
                                 onClick={gotoNext}
                                 style={{ backgroundColor: theme.secondary }}
                             >

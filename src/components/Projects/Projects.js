@@ -1,17 +1,18 @@
 import React, { useContext } from 'react';
-import Link from 'next/link';   // ✅ Next.js Link
+import Link from 'next/link'; // 👈 बदला हुआ: वापस Next.js का Link इस्तेमाल किया
 import { makeStyles } from '@material-ui/core/styles';
 import { ThemeContext } from '../../contexts/ThemeContext';
 import { projectsData } from '../../data/projectsData';
 import { HiArrowRight } from "react-icons/hi";
 
-import './Projects.module.css';
+import styles from './Projects.module.css';
 import SingleProject from './SingleProject/SingleProject';
 
 function Projects() {
     const { theme } = useContext(ThemeContext) || {};
 
     const useStyles = makeStyles(() => ({
+        // ... आपका useStyles का कोड जैसा था वैसा ही रहेगा ...
         viewAllBtn: {
             color: theme.tertiary,
             backgroundColor: theme.primary,
@@ -44,15 +45,15 @@ function Projects() {
         <>
             {projectsData.length > 0 && (
                 <div
-                    className="projects"
+                    className={styles.projects}
                     id="projects"
                     style={{ backgroundColor: theme.secondary }}
                 >
-                    <div className="projects--header">
+                    <div className={styles['projects--header']}>
                         <h1 style={{ color: theme.primary }}>Projects</h1>
                     </div>
-                    <div className="projects--body">
-                        <div className="projects--bodyContainer">
+                    <div className={styles['projects--body']}>
+                        <div className={styles['projects--bodyContainer']}>
                             {projectsData.slice(0, 3).map((project) => (
                                 <SingleProject
                                     theme={theme}
@@ -69,8 +70,8 @@ function Projects() {
                         </div>
 
                         {projectsData.length > 3 && (
-                            <div className="projects--viewAll">
-                                <Link href="/project">   {/* ✅ Next.js page route */}
+                            <div className={styles['projects--viewAll']}>
+                                <Link href="/projects"> {/* 👈 बदला हुआ: 'to' को वापस 'href' से बदला */}
                                     <button className={classes.viewAllBtn}>
                                         View All
                                         <HiArrowRight className={classes.viewArr} />

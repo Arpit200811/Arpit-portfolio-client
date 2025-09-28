@@ -1,15 +1,15 @@
 import React,{ useContext } from 'react';
 import Marquee from "react-fast-marquee";
 
-import './Skills.module.css'
+import styles from './Skills.module.css'; // 👈 बदला हुआ
 
 import { ThemeContext } from '../../contexts/ThemeContext';
-import { skillsData } from '../../data/skillsData'
-import { skillsImage } from '../../utils/skillsImage'
+import { skillsData } from '../../data/skillsData';
+import { skillsImage } from '../../utils/skillsImage';
 
 function Skills() {
 
-   ;const { theme } = useContext(ThemeContext) || {}
+    const { theme } = useContext(ThemeContext) || {};
 
     const skillBoxStyle = {
         backgroundColor: theme.secondary,
@@ -17,12 +17,12 @@ function Skills() {
     }
 
     return (
-        <div className="skills" style={{backgroundColor: theme.secondary}}>
-            <div className="skillsHeader">
+        <div className={styles.skills} style={{backgroundColor: theme.secondary}}>
+            <div className={styles.skillsHeader}> {/* 👈 बदला हुआ */}
                 <h2 style={{color: theme.primary}}>Skills</h2>
             </div>
-            <div className="skillsContainer">
-                <div className="skill--scroll">
+            <div className={styles.skillsContainer}> {/* 👈 बदला हुआ */}
+                <div className={styles['skill--scroll']}> {/* 👈 बदला हुआ */}
                     <Marquee 
                         gradient={false} 
                         speed={80} 
@@ -33,7 +33,7 @@ function Skills() {
                         direction="left"
                     >
                         {skillsData.map((skill, id) => (
-                            <div className="skill--box" key={id} style={skillBoxStyle}>
+                            <div className={styles['skill--box']} key={id} style={skillBoxStyle}> {/* 👈 बदला हुआ */}
                                 <img src={skillsImage(skill)} alt={skill} />
                                 <h3 style={{color: theme.tertiary}}>
                                     {skill}
@@ -47,4 +47,4 @@ function Skills() {
     )
 }
 
-export default Skills
+export default Skills;

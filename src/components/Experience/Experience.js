@@ -2,21 +2,21 @@ import React,{useContext} from 'react';
 
 import { ThemeContext } from '../../contexts/ThemeContext';
 
-import './Experience.module.css';
+import styles from './Experience.module.css'; // 👈 बदला हुआ
 
 import { experienceData } from '../../data/experienceData'
 import ExperienceCard from './ExperienceCard';
 
 function Experience() {
 
-   const { theme } = useContext(ThemeContext) || {}
+    const { theme } = useContext(ThemeContext) || {};
     return (
-        <div className="experience" id="experience" style={{backgroundColor: theme.secondary}}> 
-             <div className="experience-body">
-                 <div className="experience-image">
+        <div className={styles.experience} id="experience" style={{backgroundColor: theme.secondary}}> 
+             <div className={styles['experience-body']}> {/* 👈 बदला हुआ */}
+                 <div className={styles['experience-image']}> {/* 👈 बदला हुआ */}
                      <img src={theme.expimg} alt="" />
                  </div>
-                 <div className="experience-description">
+                 <div className={styles['experience-description']}> {/* 👈 बदला हुआ */}
                     <h1 style={{color:theme.primary}}>Experience</h1>
                     {experienceData.map(exp =>(
                         <ExperienceCard 

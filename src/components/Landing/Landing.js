@@ -3,7 +3,7 @@ import { Button } from "@material-ui/core";
 import { Link as ScrollLink } from "react-scroll";
 import { makeStyles } from "@material-ui/core/styles";
 
-import "./Landing.module.css";
+import styles from "./Landing.module.css"; // 👈 बदला हुआ: CSS मॉड्यूल को 'styles' में इम्पोर्ट किया
 import { ThemeContext } from "../../contexts/ThemeContext";
 import { headerData } from "../../data/headerData";
 import { socialsData } from "../../data/socialsData";
@@ -20,6 +20,7 @@ function Landing() {
   const { theme, drawerOpen } = useContext(ThemeContext);
 
   const useStyles = makeStyles((t) => ({
+    // ... आपका useStyles का कोड जैसा था वैसा ही रहेगा ...
     resumeBtn: {
       color: theme.primary,
       borderRadius: "30px",
@@ -68,14 +69,13 @@ function Landing() {
   const classes = useStyles();
 
   return (
-    <div className="landing">
-      <div className="landing--container">
-        {/* Left Social Icons */}
+    <div className={styles.landing}> {/* 👈 बदला हुआ */}
+      <div className={styles["landing--container"]}> {/* 👈 बदला हुआ */}
         <div
-          className="landing--container-left"
+          className={styles["landing--container-left"]} // 👈 बदला हुआ
           style={{ backgroundColor: theme.primary }}
         >
-          <div className="lcl--content">
+          <div className={styles["lcl--content"]}> {/* 👈 बदला हुआ */}
             {socialsData.linkedIn && (
               <a
                 href={socialsData.linkedIn}
@@ -83,7 +83,7 @@ function Landing() {
                 rel="noreferrer"
               >
                 <FaLinkedin
-                  className="landing--social"
+                  className={styles["landing--social"]} // 👈 बदला हुआ
                   style={{ color: theme.secondary }}
                   aria-label="LinkedIn"
                 />
@@ -92,7 +92,7 @@ function Landing() {
             {socialsData.github && (
               <a href={socialsData.github} target="_blank" rel="noreferrer">
                 <FaGithub
-                  className="landing--social"
+                  className={styles["landing--social"]} // 👈 बदला हुआ
                   style={{ color: theme.secondary }}
                   aria-label="GitHub"
                 />
@@ -101,7 +101,7 @@ function Landing() {
             {socialsData.twitter && (
               <a href={socialsData.twitter} target="_blank" rel="noreferrer">
                 <FaTwitter
-                  className="landing--social"
+                  className={styles["landing--social"]} // 👈 बदला हुआ
                   style={{ color: theme.secondary }}
                   aria-label="Twitter"
                 />
@@ -110,7 +110,7 @@ function Landing() {
             {socialsData.youtube && (
               <a href={socialsData.youtube} target="_blank" rel="noreferrer">
                 <FaYoutube
-                  className="landing--social"
+                  className={styles["landing--social"]} // 👈 बदला हुआ
                   style={{ color: theme.secondary }}
                   aria-label="YouTube"
                 />
@@ -119,7 +119,7 @@ function Landing() {
             {socialsData.blogger && (
               <a href={socialsData.blogger} target="_blank" rel="noreferrer">
                 <FaBlogger
-                  className="landing--social"
+                  className={styles["landing--social"]} // 👈 बदला हुआ
                   style={{ color: theme.secondary }}
                   aria-label="Blogger"
                 />
@@ -127,30 +127,25 @@ function Landing() {
             )}
           </div>
         </div>
-
-        {/* Center Image */}
         <img
           src={headerData.image}
           alt=""
-          className="landing--img"
+          className={styles["landing--img"]} // 👈 बदला हुआ
           style={{
             opacity: `${drawerOpen ? "0" : "1"}`,
             borderColor: theme.secondary,
           }}
         />
-
-        {/* Right Content */}
         <div
-          className="landing--container-right"
+          className={styles["landing--container-right"]} // 👈 बदला हुआ
           style={{ backgroundColor: theme.secondary }}
         >
-          <div className="lcr--content" style={{ color: theme.tertiary }}>
+          <div className={styles["lcr--content"]} style={{ color: theme.tertiary }}> {/* 👈 बदला हुआ */}
             <h6>{headerData.title}</h6>
             <h1>{headerData.name}</h1>
             <p>{headerData.desciption}</p>
 
-            <div className="lcr-buttonContainer">
-              {/* Resume Button */}
+            <div className={styles["lcr-buttonContainer"]}> {/* 👈 बदला हुआ */}
               {headerData.resumePdf && (
                 <a
                   href={headerData.resumePdf}
@@ -161,8 +156,6 @@ function Landing() {
                   Download CV
                 </a>
               )}
-
-              {/* Contact Button */}
               <ScrollLink
                 to="contacts"
                 smooth={true}
